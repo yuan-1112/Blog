@@ -12,3 +12,6 @@ Day1 ：
     2.用.yml文件写出配置文件，并在config层对配置文件设置初始化
     3.在model层初始化Article、Category、User结构体，初始化数据库以及接着实现简单router测试
     
+Day2:    
+    1.utils层写出errmsg，用于处理项目模块的各种情况需要捕捉的错误请求（也可以边写边加）
+    2.api层编写各类业务功能实现，并更新于router中的业务路由
