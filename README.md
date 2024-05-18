@@ -15,3 +15,10 @@ Day1 ：
 Day2:    
     1.utils层写出errmsg，用于处理项目模块的各种情况需要捕捉的错误请求（也可以边写边加）
     2.api层编写各类业务功能实现，并更新于router中的业务路由
+    3.model层完成gorm数据库操作，实现user、category的简单路由接口
+
+Day3:
+    1.使用ScryptPw写出密码加密功能，用于数据库防护用户密码
+    2.完成article路由接口，查询分类下的所有文章、单个文章（article结构体涉及到category结构体，gorm操作需使用preload预加载）...
+    3.优化router层路由接口路径，分为user、article、category三组路径
+    4.
