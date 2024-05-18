@@ -1,0 +1,14 @@
+server :
+  port : 9090
+
+
+mode:
+  develop : false
+  JwtKeY : 89js82js72
+
+db:
+  dsn : root:root@tcp(127.0.0.1:3306)/ginblog?charset=utf8mb4&parseTime=True&loc=Local
+  SetMaxIdleConns : 10
+  SetMaxOpenConns : 10
+
+
