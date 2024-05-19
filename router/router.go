@@ -11,7 +11,7 @@ func InitRouter() {
 	r := gin.New()
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
-
+	r.Use(middleware.Cors())
 	//公共路由
 	rgPublic := r.Group("api/v1/public")
 	{
