@@ -7,8 +7,10 @@ import (
 )
 
 func InitRouter() {
-
-	r := gin.Default()
+	//r := gin.Default()
+	r := gin.New()
+	r.Use(middleware.Logger())
+	r.Use(gin.Recovery())
 
 	//公共路由
 	rgPublic := r.Group("api/v1/public")
@@ -41,6 +43,7 @@ func InitRouter() {
 		{
 			//user.POST("add", v1.AddUser)
 			//user.GET("list", v1.GetUsers)
+			user.POST("upload", v1.Upload) //上传文件接口
 			user.PUT(":id", v1.EditUser)
 			user.DELETE(":id", v1.DeleteUser)
 		}

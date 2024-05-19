@@ -29,16 +29,17 @@ func CreateCategory(data *Category) int {
 	return errmsg.SUCCESS
 }
 
-func GetCategory(pageSize int, pageNum int) []Category {
+func GetCategory(pageSize int, pageNum int) ([]Category, int64) {
 	var category []Category
+	var total int64
 	//使用分页将输出列表分隔
 	//固定写法
 	err := db.Model(&Category{}).Limit(pageSize).
-		Offset((pageNum - 1) * pageSize).Find(&category).Error
+		Offset((pageNum - 1) * pageSize).Find(&category).Count(&total).Error
 	if err != nil {
-		return nil
+		return nil, 0
 	}
-	return category
+	return category, total
 }
 
 func EditCategory(id int, data *Category) int {

@@ -11,4 +11,8 @@ db:
   SetMaxIdleConns : 10
   SetMaxOpenConns : 10
 
-
+mini:
+  AccessKey : Xc7KD48OstUl9OwedKM5PRvi9W3f3Z2ZxUdvCYH7
+  SecretKey : RXweIs1WQCV6F_22akiuoUlA9TLHgZsZENa4QI3P
+  Bucket : ggggblog
+  QinServer : http://sdplkhcej.hn-bkt.clouddn.com/

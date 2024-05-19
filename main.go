@@ -8,6 +8,10 @@ import (
 
 func main() {
 	initBase()
+	//fmt.Println("Configurations:")
+	//for key, value := range viper.AllSettings() {
+	//	fmt.Printf("%s: %v\n", key, value)
+	//}
 }
 
 func initBase() {
