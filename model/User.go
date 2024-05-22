@@ -9,9 +9,9 @@ import (
 // User 声明结构体
 type User struct {
 	gorm.Model
-	Username string `gorm:"type: varchar(20); not null" json:"username" validate:"required,min=4,max=12" lable:"用户名"`
+	Username string `gorm:"type: varchar(20); not null" json:"username" validate:"required,min=4,max=12" label:"用户名"`
 	Password string `gorm:"type: varchar(20); not null" json:"password" validate:"required,min=6,max=20" label:"密码"`
-	Role     int    `gorm:"type: int;default:2" json:"role" validate:"required,gte=2" lable:"角色"`
+	Role     int    `gorm:"type: int;default:2" json:"role" validate:"required,gte=2" label:"角色"`
 }
 
 // CheckUser 查询用户是否存在
@@ -86,7 +86,6 @@ func CheckLogin(username string, password string) int {
 	//用户是否存在
 	if user.ID == 0 {
 		return errmsg.ERROR_USER_NOT_EXIST
-
 	}
 
 	//用户密码是否正确

@@ -69,5 +69,5 @@ func InitRouter() {
 	}
 
 	//port := viper.GetString("server.port")
-	r.Run(":9090")
+	_ = r.Run(":9090")
 }
