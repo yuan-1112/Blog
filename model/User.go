@@ -6,7 +6,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// User 声明结构体
 type User struct {
 	gorm.Model
 	Username string `gorm:"type: varchar(20); not null" json:"username" validate:"required,min=4,max=12" label:"用户名"`
@@ -14,7 +13,6 @@ type User struct {
 	Role     int    `gorm:"type: int;default:2" json:"role" validate:"required,gte=2" label:"角色"`
 }
 
-// CheckUser 查询用户是否存在
 func CheckUser(name string) int {
 	var users User
 	db.Select("id").Where("username = ?", name).First(&users)
@@ -24,8 +22,6 @@ func CheckUser(name string) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// CreateUser 新增用户
 func CreateUser(data *User) int {
 	//data.Password = utils.ScryptPw(data.Password)
 	data.BeforeSave()
@@ -35,8 +31,6 @@ func CreateUser(data *User) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// GetUsers 查询用户列表
 func GetUsers(pageSize int, pageNum int) ([]User, int64) {
 	var users []User
 	var total int64
@@ -49,8 +43,6 @@ func GetUsers(pageSize int, pageNum int) ([]User, int64) {
 	}
 	return users, total
 }
-
-// EditUser 编辑用户
 func EditUser(id int, data *User) int {
 	//var user User
 	var maps = make(map[string]interface{})
@@ -62,8 +54,6 @@ func EditUser(id int, data *User) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// DeleteUser 删除用户
 func DeleteUser(id int) int {
 	var user User
 	err := db.Where("id = ?", id).Delete(&user).Error
@@ -72,13 +62,9 @@ func DeleteUser(id int) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// BeforeSave 钩子函数
 func (u *User) BeforeSave() {
 	u.Password = utils.ScryptPw(u.Password)
 }
-
-// CheckLogin 登录验证
 func CheckLogin(username string, password string) int {
 	var user User
 	db.Where("username = ?", username).First(&user)

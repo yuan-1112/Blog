@@ -23,8 +23,6 @@ func CreateArticle(data *Article) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// GetCategoryArticle 查询分类下的所有文章
 func GetCategoryArticle(id int, pageNum int, pageSize int) ([]Article, int, int64) {
 	var cateArticleList []Article
 	var total int64
@@ -34,8 +32,6 @@ func GetCategoryArticle(id int, pageNum int, pageSize int) ([]Article, int, int6
 	}
 	return cateArticleList, errmsg.SUCCESS, total
 }
-
-// GetArticleInfo 查询单个文章
 func GetArticleInfo(id int) (Article, int) {
 	var article Article
 	err := db.Preload("Category").Where("id = ?", id).First(&article).Error
@@ -44,7 +40,6 @@ func GetArticleInfo(id int) (Article, int) {
 	}
 	return article, errmsg.SUCCESS
 }
-
 func GetArticle(pageSize int, pageNum int) ([]Article, int, int64) {
 	var articleList []Article
 	var total int64
@@ -55,7 +50,6 @@ func GetArticle(pageSize int, pageNum int) ([]Article, int, int64) {
 	}
 	return articleList, errmsg.SUCCESS, total
 }
-
 func EditArticle(id int, data *Article) int {
 	var maps = make(map[string]interface{})
 	maps["title"] = data.Title
@@ -69,7 +63,6 @@ func EditArticle(id int, data *Article) int {
 	}
 	return errmsg.SUCCESS
 }
-
 func DeleteArticle(id int) int {
 	var article Article
 	err := db.Where("id = ?", id).Delete(&article).Error
@@ -78,3 +71,11 @@ func DeleteArticle(id int) int {
 	}
 	return errmsg.SUCCESS
 }
+
+//ALTER TABLE articles ADD CONSTRAINT fk_category_id FOREIGN KEY (category_id) REFERENCES categories(id);
+//INSERT INTO articles (category_id, title, cid, description, content, img) VALUES (?, ?, ?, ?, ?, ?);
+//SELECT * FROM articles WHERE cid = ? LIMIT ? OFFSET ?;
+//SELECT * FROM articles WHERE id = ?;
+//SELECT * FROM articles LIMIT ? OFFSET ?;
+//UPDATE articles SET title = ?, cid = ?, description = ?, content = ?, img = ? WHERE id = ?;
+//DELETE FROM articles WHERE id = ?;

@@ -1,0 +1,1 @@
+time="2024-05-24 14:18:11" level=info Agent=PostmanRuntime/7.39.0 DataSize=212 Hostname=DESKTOP-LGNTS43 Ip="::1" Method=POST Path=/api/v1/public/user/add SpendTime="88 ms" Status=200

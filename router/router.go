@@ -7,15 +7,12 @@ import (
 )
 
 func InitRouter() {
-	//r := gin.Default()
 	r := gin.New()
 	r.Use(middleware.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
-	//公共路由
 	rgPublic := r.Group("api/v1/public")
 	{
-		//用户模块的路由接口
 		user := rgPublic.Group("user")
 		{
 			user.POST("add", v1.AddUser)
@@ -33,41 +30,27 @@ func InitRouter() {
 			article.GET("list/:id", v1.GetCategoryArticle)
 		}
 	}
-
-	//鉴权路由
 	rgAuth := r.Group("api/v1")
 	rgAuth.Use(middleware.JwtToken())
 	{
-		//用户模块的路由接口
 		user := rgAuth.Group("user")
 		{
-			//user.POST("add", v1.AddUser)
-			//user.GET("list", v1.GetUsers)
 			user.POST("upload", v1.Upload) //上传文件接口
 			user.PUT(":id", v1.EditUser)
 			user.DELETE(":id", v1.DeleteUser)
 		}
-		//分类模块的路由接口
 		category := rgAuth.Group("category")
 		{
 			category.POST("add", v1.AddCategory)
-			//category.GET("list", v1.GetCategory)
 			category.PUT(":id", v1.EditCategory)
 			category.DELETE(":id", v1.DeleteCategory)
 		}
-		//文章模块的路由接口
 		article := rgAuth.Group("article")
 		{
 			article.POST("add", v1.AddArticle)
-			//article.GET("list", v1.GetArticle)
 			article.PUT(":id", v1.EditArticle)
 			article.DELETE(":id", v1.DeleteArticle)
-			//article.GET("info/:id", v1.GetArticleInfo)
-			//article.GET("list/:id", v1.GetCategoryArticle)
 		}
-
 	}
-
-	//port := viper.GetString("server.port")
 	_ = r.Run(":9090")
 }

@@ -18,22 +18,16 @@ func CheckCategory(name string) int {
 	}
 	return errmsg.SUCCESS
 }
-
 func CreateCategory(data *Category) int {
-	//data.Password = utils.ScryptPw(data.Password)
-	//data.BeforeSave()
 	err := db.Create(&data).Error
 	if err != nil {
 		return errmsg.ERROR
 	}
 	return errmsg.SUCCESS
 }
-
 func GetCategory(pageSize int, pageNum int) ([]Category, int64) {
 	var category []Category
 	var total int64
-	//使用分页将输出列表分隔
-	//固定写法
 	err := db.Model(&Category{}).Limit(pageSize).
 		Offset((pageNum - 1) * pageSize).Find(&category).Count(&total).Error
 	if err != nil {
@@ -41,7 +35,6 @@ func GetCategory(pageSize int, pageNum int) ([]Category, int64) {
 	}
 	return category, total
 }
-
 func EditCategory(id int, data *Category) int {
 	var maps = make(map[string]interface{})
 	maps["name"] = data.Name
@@ -52,7 +45,6 @@ func EditCategory(id int, data *Category) int {
 	}
 	return errmsg.SUCCESS
 }
-
 func DeleteCategory(id int) int {
 	var category Category
 	err := db.Where("id = ?", id).Delete(&category).Error
@@ -61,5 +53,3 @@ func DeleteCategory(id int) int {
 	}
 	return errmsg.SUCCESS
 }
-
-// todo 查询分类下的所有文章
